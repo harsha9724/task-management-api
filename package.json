@@ -4,7 +4,7 @@
   "description": "This is the  service for self task management api created for authenticated user",
   "main": "index.js",
   "scripts": {
-    "start":"node index",
+    "start": "node index",
     "dev": "nodemon run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,8 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.0",
     "nodemon": "^3.1.10"
   }
