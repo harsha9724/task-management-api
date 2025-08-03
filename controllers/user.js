@@ -77,7 +77,7 @@ async function login(req,res) {
                     // credentials are matched and we need to create jwt token for the futher authentication
                     jwt.sign(
                         {user_id:existing_user._id}
-                        ,process.env.JWT_SCRETE,
+                        ,process.env.JWT_SECRET,
                         { expiresIn: '1h' },
                         function(err, token) {
                             if(err){
