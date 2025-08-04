@@ -82,3 +82,35 @@ visit
 ```bash
 http://localhost:{your_port_number}/api-docs
 ```
+
+##  Scalability Design
+
+The project is structured and engineered for scalability in terms of both codebase and data handling.
+
+| Aspect                        | Explanation                                                                                                                            |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Modular Structure**         | Code is split into `controllers`, `routes`, `models`, and `middleware`, making it easy to scale features independently.                |
+| **Middleware-driven**         | Core logic like authentication, validation, and error handling are abstracted into middleware, allowing easy reuse across new routes.  |
+| **Validation Layer**          | Input checks are handled using `express-validator`, separating concerns and preventing logic duplication.                             |
+| **Reusable Auth**             | JWT middleware provides a plug-and-play authentication layer, easily applied to any future protected routes.                          |
+
+
+##  Database Scalability
+
+The MongoDB data model is designed for efficient querying, indexing, and future scaling.
+
+| Feature                   | Explanation                                                                                               |
+|---------------------------|-----------------------------------------------------------------------------------------------------------|
+| **MongoDB Schema Design** | Tasks reference the user via `userID`, enabling efficient user-specific queries with indexing.            |
+| **Indexes**               | Indexes can be created on fields like `userID`, `completed`, and `createdAt` to improve filtering/sorting. |
+| **Sharding Ready**        | MongoDB supports horizontal sharding for large datasets using `userID` as a shard key in multi-tenant apps. |
+
+
+##  Infrastructure Scalability
+
+| Component            | Scalable Option                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| **Express App**      | Can run on multiple instances behind a load balancer (e.g., Nginx or AWS ELB).             |
+| **Stateless Auth**   | JWT is stateless, so the app can scale horizontally with no session storage bottlenecks.   |
+| **Rate Limiting**    | Use centralized stores like Redis for distributed rate limiting.                           |
+| **Database**         | MongoDB Atlas or self-managed cluster can scale horizontally.                              |
