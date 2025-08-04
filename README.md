@@ -29,7 +29,6 @@ npm install
 ### 2. Create .env file and add following variables
 
 ```bash
-Install or Add MongoUrl either from Atlas or local url
 PORT
 MONGO_URL
 JWT_SECRET
