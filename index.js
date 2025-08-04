@@ -38,7 +38,7 @@ const options = {
 const swaggerSpec = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
+ connectToDb(MONGO_URL)
 // to read data from body as json object
 app.use(express.json());
 
@@ -67,6 +67,7 @@ app.use("/api/tasks",taskRoutes);
 
 
 app.listen(PORT,()=>{
-    connectToDb(MONGO_URL)
     console.log(`Server running on the port ${PORT}`);
 })
+
+module.exports = app;
