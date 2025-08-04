@@ -96,7 +96,7 @@ async function deleteTask(req,res) {
         if(!data){
             return res.status(401).json({
                 status:"Failed",
-                message:"Your are not authorized to update this task"
+                message:"Your are not authorized to delete this task"
             })
         }
 

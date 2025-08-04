@@ -7,9 +7,37 @@ const userRoutes = require("./routes/user");
 const taskRoutes = require("./routes/task");
 const rateLimit = require('express-rate-limit');
 const helmet = require("helmet");
-
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL
+
+// swagger-api-docs configuration
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Task Manager API',
+      version: '1.0.0',
+      description: 'A secure task manager backend using Node.js, Express, and MongoDB',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [{ bearerAuth: [] }],
+  },
+  apis: ['./routes/*.js'],
+};
+
+const swaggerSpec = swaggerJsDoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // to read data from body as json object
 app.use(express.json());
