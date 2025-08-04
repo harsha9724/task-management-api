@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
